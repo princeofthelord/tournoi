@@ -3,15 +3,61 @@
 body {
     font-family: 'DM Sans', sans-serif;
     text-align: center;
+    background-color: #f8f9fa; /* light gray */
+    color: #343a40; /* dark gray */
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 form {
     display: inline-block;
-    margin: 0 auto;
+    margin: 50px auto;
     text-align: left;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 300px;
 }
 
 label, input {
     display: block;
     margin: 10px auto;
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0069d9; /* dark blue */
+}
+
+.error, .message {
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.error {
+    background-color: #f8d7da; /* light red */
+    color: #721c24; /* dark red */
+}
+
+.message {
+    background-color: #d4edda; /* light green */
+    color: #155724; /* dark green */
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
 }
