@@ -3,13 +3,13 @@
 
 Cette application web sert a créer des tournois ou les participants on le droit de:
 
-| ----------- | ----------- |
+-----------------------------------
 
 1. S'inscrire
 2. se connecter
 3. créer & modifier des tournois.
 
-| ----------- | ----------- |
+-----------------------------------
 
  (Ceci est la liste complete des fonctionnalités du site.)
 
