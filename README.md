@@ -3,7 +3,11 @@ fuck school
 
 Cette application web sert a créer des tournois ou les participants on le droit de:
 
-**S'inscrire, se connecter, créer & modifier des tournois.** 
+**
+1. S'inscrire
+2. se connecter
+3. créer & modifier des tournois.
+** 
 Ceci est la liste complete des fonctionnalités du site.
 
 C'est un projet scolaire qui nous servira a apprendre les bases du développement web, sachant que nous n'avons accès ni au libraries/framework ou Javascript!!!!!!
