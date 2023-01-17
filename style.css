@@ -3,8 +3,8 @@
 body {
     font-family: 'DM Sans', sans-serif;
     text-align: center;
-    background-color: #f8f9fa; /* light gray */
-    color: #343a40; /* dark gray */
+    background-color: #1f1f1f; /* light gray */
+    color: #ffffff; /* dark gray */
     font-size: 16px;
     line-height: 1.5;
 }
@@ -12,11 +12,10 @@ body {
 form {
     display: inline-block;
     margin: 50px auto;
-    text-align: left;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(54, 54, 54);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 8px;
     width: 300px;
 }
 
