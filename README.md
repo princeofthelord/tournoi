@@ -1,4 +1,5 @@
 # tournoi
+## #️⃣ 🎠 🔃 🉐 👍 🎎 🐙 👐 🏥 🎋 🔗 ⚖ ❄️
 
 Cette application web sert a créer des tournois ou les participants on le droit de:
 
