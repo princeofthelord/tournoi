@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $errorCode = $db->lastErrorCode();
       
       if ($errorCode == 19) {
-          echo "Email address already exists. <Br> Please choose a different email.";
+          echo "Email address already exists. <Br> Login or choose a different email.";
       } else {
           // Handle other database errors
           echo "Error: " . $db->lastErrorMsg();
