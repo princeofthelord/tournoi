@@ -1,62 +1,104 @@
+:root {
+  /* galaxy image from https://unsplash.com/s/photos/galaxy */
+  --bg-image: url('https://img.freepik.com/free-photo/green-leaf-texture-leaf-texture-background_501050-120.jpg?w=1380&t=st=1702822700~exp=1702823300~hmac=b4c04bfa911effb5da7b7160e01fa0668d0e724660909583686ce347d2efe199');
+}
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'DM Sans', sans-serif;
-    text-align: center;
-    background-color: #1f1f1f; /* light gray */
-    color: #ffffff; /* dark gray */
-    font-size: 16px;
-    line-height: 1.5;
+  font-family: 'DM Sans', sans-serif;
+  background-color: #1f1f1f; /* light gray */
+  color: #ffffff; /* dark gray */
+  font-size: 16px;
+  line-height: 1.5;
+  margin: auto;
+  padding: 1%;
 }
 
 form {
-    display: inline-block;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: rgb(54, 54, 54);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 300px;
+  padding: 10px;
+  float: left;
+  width: 15%;
+  text-align: center;
+  border: 2px dashed rgb(255, 255, 255);
+  border-radius: 5px;
 }
 
-label, input {
-    display: block;
-    margin: 10px auto;
+.intro {
+  padding: 10px;
+  width: 85%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 5px;
 }
 
-input[type="submit"] {
-    background-color: #007bff; /* blue */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+button {
+  width: fit-content;
+  background-color: rgb(42, 165, 120);
+  border: 2px solid rgb(42, 165, 120);
+  border-radius: 2px;
 }
 
-input[type="submit"]:hover {
-    background-color: #0069d9; /* dark blue */
+input {
+    margin: 5px;
 }
 
-.error, .message {
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
+a {
+  text-decoration: none;
+  color: rgb(42, 165, 120);
 }
 
-.error {
-    background-color: #f8d7da; /* light red */
-    color: #721c24; /* dark red */
+a:hover:visited {
+  color: rgb(176, 60, 60);
 }
 
-.message {
-    background-color: #d4edda; /* light green */
-    color: #155724; /* dark green */
+header {
+  text-align: center;
 }
 
-@media (max-width: 600px) {
-    form {
-        width: 90%;
-    }
+footer {
+  text-align: center;
+}
+
+.bg-blur {
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.bg-blur::before {
+  content: '';
+  background-image: var(--bg-image);
+  height: 56%;
+  width: 80%;
+  position: absolute;
+  filter: blur(50px);
+  z-index: -1;
+}
+
+@media only screen and (max-width: 430px) {
+  /* For mobile phones: */
+  * {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .intro {
+    width: fit-content;
+    height: 100%;
+  }
+
+  input {
+    width: 25%;
+  }
+  button {
+    width: 49%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+  }
 }
