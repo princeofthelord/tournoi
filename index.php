@@ -2,42 +2,65 @@
 include 'database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['submit_action'])) {
+    $action = $_POST['submit_action'];
+    
+    if ($action == 'register') {
+      // Getting user input and putting it in a variable
+      $email = $_POST['email'];
+      $password = $_POST['password'];
 
-  // Getting user input and putting it in a variable
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+      // Hashing the password and putting it in a variable
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-  // Hashing the password and putting it in a variable
-  $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      // Prepare the SQL statement
+      $stmt = $db->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
 
-  // Prepare the SQL statement
-  $stmt = $db->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
+      // Bind the variables to SQL parameters and declare which data type they are
+      $stmt->bindParam(':email', $email, SQLITE3_TEXT);
+      $stmt->bindParam(':password', $hashedPassword, SQLITE3_TEXT);
 
-  // Bind the variables to SQL parameters and declare which data type they are
-  $stmt->bindParam(':email', $email, SQLITE3_TEXT);
-  $stmt->bindParam(':password', $hashedPassword, SQLITE3_TEXT);
+      // Turn off displaying errors
+      ini_set('display_errors', 0);
 
-  // Turn off displaying errors
-  ini_set('display_errors', 0);
+      // Execute the SQL statement
+      $result = $stmt->execute();
 
-  // Execute the SQL statement
-  $result = $stmt->execute();
+      // Turn on displaying errors (optional, but good practice to restore the default behavior)
+      ini_set('display_errors', 1);
 
-  // Turn on displaying errors (optional, but good practice to restore the default behavior)
-  ini_set('display_errors', 1);
+      if ($result && $email != "") {
+          // Handle successful insertion
+          echo "User registered successfully!";
+      } elseif ($email == "") {
+            echo"why do you send useless data to the server?";
+        } else {
+            // Check if the error code corresponds to a unique constraint violation
+            $errorCode = $db->lastErrorCode();
+            
+            if ($errorCode == 19) {
+                echo "Email address already exists. <Br> Login or choose a different email.";
+              } else {
+                  // Handle other database errors
+                  echo "Error: " . $db->lastErrorMsg();
+              }
+          }
+    } elseif ($action == 'login') {
+        $logStmt = $db->prepare("SELECT * FROM users WHERE email = :email");
 
-  if ($result) {
-      // Handle successful insertion
-      echo "User registered successfully!";
-  } else {
-      // Check if the error code corresponds to a unique constraint violation
-      $errorCode = $db->lastErrorCode();
-      
-      if ($errorCode == 19) {
-          echo "Email address already exists. <Br> Login or choose a different email.";
+        // Bind the variables to SQL parameters and declare which data type they are
+        $pondu = "esaubukasa@protonmail.com";
+        $logStmt->bindParam(':email', $pondu, SQLITE3_TEXT);
+
+        // Execute the SQL statement
+        $logResult = $logStmt->execute();
+        // Fetch the record as an associative array
+        $userRecord = $logResult->fetchArray(SQLITE3_ASSOC);
+
+        $user = print_r($userRecord);
+        echo "You are {$user}";
       } else {
-          // Handle other database errors
-          echo "Error: " . $db->lastErrorMsg();
+          echo "Enter your details";
       }
   }
 }
@@ -57,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <input type="email" name="email" id="email" require>
       <label for="password">Password:</label>
       <input type="password" name="password" id="password" require>
-      <button type="submit">register</button>
-      <button type="submit">login</button>
+      <button type="submit" name="submit_action" value="register">register</button>
+      <button type="submit" name="submit_action" value="login">login</button>
     </form>
     <div class="intro bg-blur">
       <h1 style="text-align:center;">[ Welcome to Tournoi ]</h1>
